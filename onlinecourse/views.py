@@ -1,6 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 # <HINT> Import any new Models here
+
+from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
+from .models import Course, Enrollment, Submission, Question, Choice
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.views import generic
+from django.contrib.auth import login, logout, authenticate
+import logging
+
 from .models import Course, Enrollment, Submission, Question, Choice
 from .models import Course, Enrollment
 from django.contrib.auth.models import User
