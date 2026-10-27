@@ -119,13 +119,10 @@ class Question(models.Model):
         selected_ids = set(selected_ids)
         return bool(correct_ids) and correct_ids == selected_ids
 
-
 # Choice model
 class Choice(models.Model):
-    question = models.ForeignKey(
-        Question, on_delete=models.CASCADE
-    )
-    choice_text = models.CharField(max_length=200)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=100)
     is_correct = models.BooleanField(default=False)
 
     def __str__(self):
@@ -134,13 +131,8 @@ class Choice(models.Model):
 
 # Submission model
 class Submission(models.Model):
-    enrollment = models.ForeignKey(
-        Enrollment, on_delete=models.CASCADE
-    )
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
     choices = models.ManyToManyField(Choice)
 
     def __str__(self):
-        return (
-            f"{self.enrollment.user.username} - "
-            f"{self.enrollment.course.name}"
-        )
+        return f"Submission {self.id} for enrollment {self.enrollment.id}"
